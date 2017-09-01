@@ -4,4 +4,4 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.persona_list),
-    ]
+]
