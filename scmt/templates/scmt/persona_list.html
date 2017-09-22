@@ -1,12 +1,23 @@
+{% extends 'scmt/base.html' %}
+{% load staticfiles%}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hola</title>
+	<title>SCMT</title>
 </head>
 <body>
-{% for personas in persona %}
-	{{persona}}
-{% endfor %}
+<div class="container div">
+	    <form id="ejercicios">
+
+		    <div class="div">
+                {% for personas in persona %}
+	                    {{persona}}
+                {% endfor %}
+
+		    </div>
+		</form>
+	</div>
+
 
 </body>
 </html>
