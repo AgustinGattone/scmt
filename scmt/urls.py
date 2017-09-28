@@ -4,5 +4,5 @@ from scmt import views as core_views
 
 urlpatterns = [
     url(r'^$', views.persona_list),
-    url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^signup/', core_views.signup, name='signup'),
 ]
