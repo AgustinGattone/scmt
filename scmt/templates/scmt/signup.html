@@ -5,6 +5,7 @@
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
+
     {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
@@ -17,6 +18,7 @@
         {% endfor %}
       </p>
     {% endfor %}
+    {{ form.as_q}}
     <button type="submit">Sign up</button>
   </form>
 {% endblock %}
