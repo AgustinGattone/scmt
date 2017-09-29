@@ -27,8 +27,3 @@ class OfertaDeTrabajo(models.Model):
     tipoDeTrabajo =  models.CharField(max_length=200)
     def __str__(self):
         return self.tipoDeTrabajo
-
-class APC(models.Model):
-    empresa =  models.CharField(max_length=200)
-    desocupado =  models.CharField(max_length=200)
-    
