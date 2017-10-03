@@ -1,73 +1,98 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
-<html lang="es">
-<head>
-	<style>
-		body {
-			background: white url() no-repeat;
-			background-size: cover;
-		}
-		.div {
-			margin-top: 70px;
-			padding: 20px;
-			background-color: rgba(0, 0, 0, 0.3);
-			border: 1px solid black;
-			border-radius: 5px;
-			color: black;
-			font-weight: bold;
-		}
-		.ejercicios .ejercicio {
-			margin: 10px 0;
-		}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
+    <title>SCMT</title>
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+    
+    <style>
+    body {
+     
+      font-size: 1.5rem;
+    }
+    .div {
+      max-width: 3500px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 0px solid black;
+      border-radius: 0px;
+      color: black;
+      font-weight: bold;
+    }
+   
     </style>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-wiedth, initial-scale=1">
+  </head>
 
-	<title>SCMT</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-</head>
+  <body>
 
-<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top"  id="mainNav">
+      <div class="container">
 
-		<div class="container-fluid">
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'views.home' %}">Inicio</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
 
-		<div class="navbar-header">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+   
+          <ul class="navbar-nav ml-auto"> 
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" class="dropdown-toggle" data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión <span class="caret"></span></a> 
+                <ul class="dropdown-menu">
+                  <li><a class="text-muted" href="#">Desocupado</a></li>
+                  <li><a class="text-muted" href="#">Empresa</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> Registrarse <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="text-muted"  href="{% url 'views.signup' %}">Desocupado</a></li>
+                  <li><a class="text-muted" href="#">Empresa</a></li>
+                </ul>
+            </li>
+          </ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-				<span class="sr-only">Toggle navigation </span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">SCMT</a>
-			</div>
-			<!--Contenido de la navbar-->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	 <ul class="nav navbar-nav">
-		 <li class="active"><a href="#">Inicio <span class="sr-only">(current)</span></a></li>
-		 <li class="dropdown">
-			 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrarse<span class="caret"></span></a>
-			 <ul class="dropdown-menu">
-				 <li><a href="{% url 'views.signup' %}">Desocupado</a></li>
-				 <li><a href="#">Empresa</a></li>
-				</ul>
-		 </li>
-	 </ul>
-	  <form class="navbar-form navbar-left">
-			</div>
-
-	</nav>
-
-	<!--div-->
-	<div class="container div">
-	   {% block content %}{% endblock %}
+    <div class="container div">
+	   {% block content %}{% endblock %} 
 	</div>
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-</body>
+  
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+
+
+    <script src="{% static 'js/agency.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+   
+
+  </body>
+
 </html>
