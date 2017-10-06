@@ -11,10 +11,10 @@
     <meta name="author" content="">
 
 
-    <title>SCMT</title>
-    
+    <title>{% block title %}SCMT{% endblock %}</title>
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -23,10 +23,10 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    
+
     <style>
     body {
-     
+
       font-size: 1.5rem;
     }
     .div {
@@ -38,13 +38,13 @@
       color: black;
       font-weight: bold;
     }
-   
+
     </style>
   </head>
 
   <body>
 
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top"  id="mainNav">
       <div class="container">
 
@@ -54,11 +54,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
-   
-          <ul class="navbar-nav ml-auto"> 
+
+          <ul class="navbar-nav ml-auto">
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" class="dropdown-toggle" data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión <span class="caret"></span></a> 
+              <a class="nav-link js-scroll-trigger" class="dropdown-toggle" data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a class="text-muted" href="#">Desocupado</a></li>
                   <li><a class="text-muted" href="#">Empresa</a></li>
@@ -67,8 +67,8 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> Registrarse <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="text-muted"  href="{% url 'views.signup' %}">Desocupado</a></li>
-                  <li><a class="text-muted" href="#">Empresa</a></li>
+                  <li><a href="{{ url ('registrar.desocupado') }}">Desocupado</a></li>
+                  <li><a href="{{ url('registrar.empresa') }}">Empresa</a></li>
                 </ul>
             </li>
           </ul>
@@ -78,10 +78,10 @@
     </nav>
 
     <div class="container div">
-	   {% block content %}{% endblock %} 
+	   {% block content %}{% endblock %}
 	</div>
 
-  
+
     <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
 
 
@@ -91,7 +91,7 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-   
+
 
   </body>
 
