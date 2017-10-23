@@ -7,7 +7,9 @@
   {% if user.is_empresa() %}
     <p>CUIT: {{ user.profile().cuit }}</p>
   {% endif %}
+ 
   {% if user.is_desocupado() %}
     <p>DNI: {{ user.profile().dni }}</p>
   {% endif %}
+ <a class="btn btn-default" href="{{url ('user_edit') }}">Modificar Datos <span class="glyphicon glyphicon-pencil"></span></a>
 {% endblock %}
