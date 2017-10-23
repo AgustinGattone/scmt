@@ -8,19 +8,17 @@
 
     <title>{% block title %}Colocaciones{% endblock %}</title>
     <link rel='stylesheet' href="{{ static('css/style.css') }}">
-    <link href="{{static ('css/bootstrap.min.css') }}" rel="stylesheet">
+    
+    <link href="{{ static ('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ static ('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-
-     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
-    <link href="{{ static ('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ static ('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ static ('css/agency.min.css') }}" rel="stylesheet">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
   
     <style>
     body {
@@ -38,50 +36,55 @@
     }
 
     </style>
+
   </head>
   <body>
     <header>
+      <nav class="navbar navbar-inverse">
       
-      {% if user.is_authenticated() %}
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{url ('home')}}">Sistema de Colocaciones</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-         
 
+        <a class="navbar-brand js-scroll-trigger" href="{{url ('home')}}">Sistema de Colocaciones</a>
+       
+          <ul class="nav justify-content-end">
+
+          {% if user.is_authenticated() %}
               <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav text-uppercase ml-auto">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="nav-item">
-                    <a href="{{ url('logout') }}">cerrar sesion</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ url('logout') }}">Cerrar Sesion <span class="glyphicon glyphicon-log-in"></span></a>
                   {% else %}
                    
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{{ url('login') }}"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a>
-            </li>
-
-		<div class="dropdown">
-    		<a class="nav-link js-scroll-trigger" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Registrarse<span class="caret"></span></a>
-    		<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      		<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url ('registrar.desocupado') }}">Desocupado</a></li>
-      		<li role="presentation" class="divider"></li>
-      		<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('registrar.empresa') }}">Empresa</a></li>
+        	
+        	<div class="collapse navbar-collapse" id="navbarResponsive" class="col-sm-4">
+          	<ul class="navbar-nav text-uppercase ml-auto">
+          		 <ul class="nav navbar-nav navbar-right" >
+            	<li class="nav-item">
+              	<a class="nav justify-content-end" class="nav-link js-scroll-trigger" href="{{ url('login') }}"><span class="glyphicon glyphicon-log-out"></span> Iniciar Sesión</a> / <div class="dropdown">	
+    			<a  class="nav-link js-scroll-trigger" id="menu1" data-toggle="dropdown" ><span class="glyphicon glyphicon-user"></span> Registrarse<span class="caret"></span></a>
+    			<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      			<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url ('registrar.desocupado') }}">Desocupado</a></li>
+      			<li role="presentation" class="divider"></li>
+      			<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('registrar.empresa') }}">Empresa</a></li>
       
-    		</ul>
-  		</div>
+    	
 
-                  {% endif %}
-                   
-              </div>
-            </div>
-          </nav>
+            	</li>
+            	</ul>
+			</ul>
+		</div>
 
-      <hr>
+           	</div>
+      
+</nav>
+
+        {% endif %}
+               
+
+  
     </header>
     <main>
       {% block content %}
