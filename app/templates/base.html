@@ -23,6 +23,8 @@
     <style>
     body {
 
+
+
       font-size: 1.5rem;
     }
     .div {
@@ -38,17 +40,9 @@
     </style>
 
   </head>
-  <body>
+  <body >
+    
     <header>
-      <nav class="navbar navbar-inverse">
-      
-
-	
-      <div class="container">
-
-        <a class="navbar-brand js-scroll-trigger" href="{{url ('home')}}">Sistema de Colocaciones</a>
-       
-          <ul class="nav justify-content-end">
 
           {% if user.is_authenticated() %}
               <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -59,33 +53,36 @@
                   {% else %}
                    
         	
-        	<div class="collapse navbar-collapse" id="navbarResponsive" class="col-sm-4">
-          	<ul class="navbar-nav text-uppercase ml-auto">
-          		 <ul class="nav navbar-nav navbar-right" >
-            	<li class="nav-item">
-              	<a class="nav justify-content-end" class="nav-link js-scroll-trigger" href="{{ url('login') }}"><span class="glyphicon glyphicon-log-out"></span> Iniciar Sesión</a> / <div class="dropdown">	
+     <nav class="navbar navbar-inverse">
+  	<nav  class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger">Sistema de Colocaciones</a>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url('login') }}"> <span class="glyphicon glyphicon-log-out"></span>  Iniciar Sesion </a> 
+            </li>
+            <li class="nav-item">
+              <div class="dropdown">	
     			<a  class="nav-link js-scroll-trigger" id="menu1" data-toggle="dropdown" ><span class="glyphicon glyphicon-user"></span> Registrarse<span class="caret"></span></a>
     			<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
       			<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url ('registrar.desocupado') }}">Desocupado</a></li>
       			<li role="presentation" class="divider"></li>
       			<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('registrar.empresa') }}">Empresa</a></li>
-      
-    	
-
-            	</li>
-            	</ul>
-			</ul>
-		</div>
-
-           	</div>
-      
-</nav>
+      		   </ul>
+      		</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        	
 
         {% endif %}
                
-
-  
-    </header>
+        </header>
+ 
     <main>
       {% block content %}
       {% endblock %}

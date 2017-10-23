@@ -66,18 +66,18 @@ def handle_registro_empresa_form(request):
     else:
         return render(request, 'signup.html', {'form': form})
 
-def user_edit(request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        if request.method == "POST":
-            form = RegistroDesocupado(request.POST, instance=post)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.author = request.user
-                post.save()
-                return redirect('post_detail', pk=user.pk)
-        else:
-            form = RegistroDesocupado(instance=post)
-        return render(request, 'scmt/user_edit.html', {'form': form})
+#def user_edit(request, pk):
+        #post = get_object_or_404(Post, pk=pk )
+        #if request.method == "POST":
+            #form = RegistroDesocupado(request.POST, instance=post)
+            #if form.is_valid():
+                #post = form.save(commit=False)
+                #post.author = request.user
+                #post.save()
+                #return redirect('home', pk=post.pk)
+        #else:
+            #form = RegistroDesocupado(instance=post)
+        #return render(request, 'scmt/user_edit.html', {'form': form})
 
 def persona_list(request):
     persona = Desocupado.objects.all
