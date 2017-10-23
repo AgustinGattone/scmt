@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^$', core_views.home, name='home'),
     url(r'^registrar/desocupado$', core_views.registro_desocupado, name='registrar.desocupado'),
     url(r'^registrar/empresa$', core_views.registro_empresa, name='registrar.empresa'),
+    url(r'^registrar/ofertaDeTrabajo$', core_views.registro_ofertaDeTrabajo, name='registrar.ofertaDeTrabajo'),
     #url(r'^user/(?P<pk>[0-9]+)/edit', core_views.user_edit, name='user_edit'),
 ]

@@ -1,10 +1,10 @@
 from django.shortcuts import render
-
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-from app.core.forms import RegistroDesocupado, RegistroEmpresa
+from app.core.forms import RegistroDesocupado, RegistroEmpresa, RegistroOfertaDeTrabajo
 from app.core.models import *
 
 @login_required
@@ -31,6 +31,9 @@ def registro_desocupado(request):
 def get_registro_desocupado_form(request):
     form = RegistroDesocupado()
     return render(request, 'signup.html', {'form': form})
+    #def get_absolute_url(self):
+        #return reverse('author-detail', kwargs={'pk': self.pk})
+    
 
 def handle_registro_desocupado_form(request):
     form = RegistroDesocupado(request.POST)
@@ -66,18 +69,37 @@ def handle_registro_empresa_form(request):
     else:
         return render(request, 'signup.html', {'form': form})
 
-#def user_edit(request, pk):
-        #post = get_object_or_404(Post, pk=pk )
-        #if request.method == "POST":
-            #form = RegistroDesocupado(request.POST, instance=post)
-            #if form.is_valid():
-                #post = form.save(commit=False)
-                #post.author = request.user
-                #post.save()
-                #return redirect('home', pk=post.pk)
-        #else:
-            #form = RegistroDesocupado(instance=post)
-        #return render(request, 'scmt/user_edit.html', {'form': form})
+##def user_edit(request, pk):
+        ##post = get_object_or_404(Post, pk=pk )
+        ##if request.method == "POST":
+            ##form = RegistroDesocupado(request.POST, instance=post)
+            ##if form.is_valid():
+                ##post = form.save(commit=False)
+                ##post.author = request.user
+                ##post.save()
+                ##return redirect('home', pk=registro_desocupado.pk)
+        ##else:
+            ##form = RegistroDesocupado(instance=post)
+        ##return render(request, 'scmt/user_edit.html', {'form': form})
+
+
+def registro_ofertaDeTrabajo(request):
+    if request.method == "GET":
+        return get_registro_ofertaDeTrabajo_form(request)
+    elif request.method == 'POST':
+        return handle_registro_ofertaDeTrabajo_form(request)
+
+def get_registro_ofertaDeTrabajo_form(request):
+    form = RegistroOfertaDeTrabajo()
+    return render(request, 'crear_oferta.html', {'form': form})
+
+def handle_registro_ofertaDeTrabajo_form(request):
+    form = RegistroOfertaDeTrabajo(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    else:
+        return render(request, 'crear_oferta.html', {'form': form})
 
 def persona_list(request):
     persona = Desocupado.objects.all
