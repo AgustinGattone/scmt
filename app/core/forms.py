@@ -73,4 +73,12 @@ class RegistroOfertaDeTrabajo(forms.Form):
     carga_horaria = forms.CharField(max_length=15)
     profesión = forms.CharField(max_length=100)
 
-    
+    def save(self):
+        empresa = self.empresa
+        empresa.refresh_from_db()
+        empresa.registroOfertaDeTrabajo.cargo = self.cleaned_data.get('cargo')
+        empresa.registroOfertaDeTrabajo.descripción_del_trabajo = self.cleaned_data.get('descripción_del_trabajo')
+        empresa.registroOfertaDeTrabajo.carga_horaria = self.cleaned_data.get('carga_horaria')
+        empresa.registroOfertaDeTrabajo.profesión = self.cleaned_data.get('profesión')
+        empresa.save()
+        return empresa

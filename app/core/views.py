@@ -98,10 +98,6 @@ def get_registro_ofertaDeTrabajo_form(request):
 def handle_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
-        registro_ofertaDeTrabajo = RegistroOfertaDeTrabajo (cargo = form.cleaned_data ['cargo'],
-            descripción_del_trabajo = form.cleaned_data ['descripción_del_trabajo'], carga_horaria = form.cleaned_data['carga_horaria'],
-            profesión = form.cleaned_data ['profesión'])
-        registro_ofertaDeTrabajo.save()
         return redirect('home')
     else:
         form=RegistroOfertaDeTrabajo()
@@ -111,4 +107,4 @@ def handle_registro_ofertaDeTrabajo_form(request):
 class EliminarDesocupado(DeleteView):
     model = Desocupado
     success_url = reverse_lazy('user')
-    
+

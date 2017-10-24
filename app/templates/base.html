@@ -46,7 +46,7 @@
   <nav class="navbar navbar-inverse">
   	<nav  class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger">Sistema de Colocaciones</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{url ('login')}}">Sistema de Colocaciones</a>
 
           {% if user.is_authenticated() %}
               <div class="collapse navbar-collapse" id="navbarResponsive">
