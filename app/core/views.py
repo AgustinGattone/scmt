@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 
 from app.core.forms import RegistroDesocupado, RegistroEmpresa, RegistroOfertaDeTrabajo
 from app.core.models import *
@@ -96,11 +98,17 @@ def get_registro_ofertaDeTrabajo_form(request):
 def handle_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
-        form.save()
+        registro_ofertaDeTrabajo = RegistroOfertaDeTrabajo (cargo = form.cleaned_data ['cargo'],
+            descripción_del_trabajo = form.cleaned_data ['descripción_del_trabajo'], carga_horaria = form.cleaned_data['carga_horaria'],
+            profesión = form.cleaned_data ['profesión'])
+        registro_ofertaDeTrabajo.save()
         return redirect('home')
     else:
+        form=RegistroOfertaDeTrabajo()
         return render(request, 'crear_oferta.html', {'form': form})
 
-def persona_list(request):
-    persona = Desocupado.objects.all
-    return render(request, 'scmt/persona_list.html', {'personas': persona})
+
+class EliminarDesocupado(DeleteView):
+    model = Desocupado
+    success_url = reverse_lazy('user')
+    

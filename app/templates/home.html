@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   
-          
   <h2>Welcome, {{ user.get_full_name() }} <small>{{ user.username }}</small>!</h2>
+
+ 
+
   <p>Sos un: {{ user.profile_type() }}</p>
   <p>Algunos datos relevantes son:</p>
   {% if user.is_empresa() %}
@@ -14,5 +15,9 @@
     <p>DNI: {{ user.profile().dni }}</p>
 
   {% endif %}
+
+  <button type="button" class="btn btn-primary" data-toggle="button" href="{{url ('eliminar.desocupado')}}" aria-pressed="false" autocomplete="off" >
+  Eliminar Cuenta
+</button>
 
 {% endblock %}

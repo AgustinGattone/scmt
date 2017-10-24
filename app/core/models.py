@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import app.core.patch
 
+
 # La solución planteada tiene ventajas y desventajas. Como ventaja, se usa el
 # sistema de autenticación de django, y no hay que hacer muchas cosas pues ya
 # vienen hechas. Cada entidad que es logueable, actua a modo de "perfil" de
@@ -73,6 +74,8 @@ class OfertaDeTrabajo(models.Model):
     tipo_de_trabajo =  models.CharField(max_length=200)
     def __str__(self):
         return self.tipoDeTrabajo
+
+
 
 
 # Estas son las que tenian y que reemplace por las de arriba,
