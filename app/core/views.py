@@ -35,7 +35,7 @@ def get_registro_desocupado_form(request):
     return render(request, 'signup.html', {'form': form})
     #def get_absolute_url(self):
         #return reverse('author-detail', kwargs={'pk': self.pk})
-    
+
 
 def handle_registro_desocupado_form(request):
     form = RegistroDesocupado(request.POST)
@@ -103,8 +103,20 @@ def handle_registro_ofertaDeTrabajo_form(request):
         form=RegistroOfertaDeTrabajo()
         return render(request, 'crear_oferta.html', {'form': form})
 
+  def user_edit(request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        if request.method == "POST":
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                user.username = request.user
+                post.save()
+                return redirect('user_edit', pk=post.pk)
+        else:
+            form = PostForm(instance=post)
+        return render(request, 'user_edit.html', {'form': form})
+
 
 class EliminarDesocupado(DeleteView):
     model = Desocupado
     success_url = reverse_lazy('user')
-

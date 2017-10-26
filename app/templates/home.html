@@ -3,7 +3,7 @@
 {% block content %}
   <h2>Welcome, {{ user.get_full_name() }} <small>{{ user.username }}</small>!</h2>
 
- 
+
 
   <p>Sos un: {{ user.profile_type() }}</p>
   <p>Algunos datos relevantes son:</p>
@@ -15,6 +15,8 @@
     <p>DNI: {{ user.profile().dni }}</p>
 
   {% endif %}
+
+  <a class="btn btn-default" href="{% url 'user_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span>Modificar informacion personal</a>
 
   <button type="button" class="btn btn-primary" data-toggle="button" href="{{url ('eliminar.desocupado')}}" aria-pressed="false" autocomplete="off" >
   Eliminar Cuenta

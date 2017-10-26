@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin as admin_views
-from django.contrib.auth import views as auth_views 
+from django.contrib.auth import views as auth_views
 from app.core import views as core_views
 
 urlpatterns = [
@@ -25,6 +25,5 @@ urlpatterns = [
     url(r'^registrar/empresa$', core_views.registro_empresa, name='registrar.empresa'),
     url(r'^registrar/ofertaDeTrabajo$', core_views.registro_ofertaDeTrabajo, name='registrar.ofertaDeTrabajo'),
     url(r'^eliminar/desocupado$', core_views.EliminarDesocupado.as_view(), name='eliminar.desocupado'),
-
-    #url(r'^user/(?P<pk>[0-9]+)/edit', core_views.user_edit, name='user_edit'),
+    url(r'^user/(?P<pk>[0-9]+)/edit', core_views.user_edit, name='user_edit'),
 ]
