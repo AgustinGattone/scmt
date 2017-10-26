@@ -1,4 +1,4 @@
-El sistema se actualizó para utilizar python 3 en lugar de python 2, y utilizar
+﻿El sistema se actualizó para utilizar python 3 en lugar de python 2, y utilizar
 la última versión de Django. Esto trae aparejados algunos inconvenientes, pues
 hay que instalar python 3 si no lo tienen, incluyendo pip 3. En windows, se
 debe ir a la página de [python](http://python.org) y descargarlo y luego descargar setuptools y pip.
@@ -71,4 +71,4 @@ python3 manage.py createsuperuser
 ```
 
 P.P.D. Si instalan todo global tal cual se indica acá, se olvidan del tema del
-entorno. Salvo que esten haciendo otro proyecto en django, lo recomiendo.
+entorno. Salvo que esten haciendo otro proyecto en django, lo recomiendo

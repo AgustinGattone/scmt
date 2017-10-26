@@ -71,20 +71,6 @@ def handle_registro_empresa_form(request):
     else:
         return render(request, 'signup.html', {'form': form})
 
-##def user_edit(request, pk):
-        ##post = get_object_or_404(Post, pk=pk )
-        ##if request.method == "POST":
-            ##form = RegistroDesocupado(request.POST, instance=post)
-            ##if form.is_valid():
-                ##post = form.save(commit=False)
-                ##post.author = request.user
-                ##post.save()
-                ##return redirect('home', pk=registro_desocupado.pk)
-        ##else:
-            ##form = RegistroDesocupado(instance=post)
-        ##return render(request, 'scmt/user_edit.html', {'form': form})
-
-
 def registro_ofertaDeTrabajo(request):
     if request.method == "GET":
         return get_registro_ofertaDeTrabajo_form(request)
@@ -106,7 +92,7 @@ def handle_registro_ofertaDeTrabajo_form(request):
   def user_edit(request, pk):
         post = get_object_or_404(Post, pk=pk)
         if request.method == "POST":
-            form = PostForm(request.POST, instance=post)
+            form = RegistroDesocupado(request.user, instance=post)
             if form.is_valid():
                 post = form.save(commit=False)
                 user.username = request.user
