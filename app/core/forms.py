@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from app.core.models import *
 
 class RegistroDesocupado(UserCreationForm):
     dni = forms.CharField(required=True)
@@ -67,18 +68,8 @@ class RegistroEmpresa(UserCreationForm):
         return user
 
 
-class RegistroOfertaDeTrabajo(forms.Form):
-    cargo = forms.CharField(max_length=100)
-    descripción_del_trabajo = forms.CharField()
-    carga_horaria = forms.CharField(max_length=15)
-    profesión = forms.CharField(max_length=100)
+class RegistroOfertaDeTrabajo(forms.ModelForm):
 
-    def save(self):
-        empresa = self.empresa
-        empresa.refresh_from_db()
-        empresa.registroOfertaDeTrabajo.cargo = self.cleaned_data.get('cargo')
-        empresa.registroOfertaDeTrabajo.descripción_del_trabajo = self.cleaned_data.get('descripción_del_trabajo')
-        empresa.registroOfertaDeTrabajo.carga_horaria = self.cleaned_data.get('carga_horaria')
-        empresa.registroOfertaDeTrabajo.profesión = self.cleaned_data.get('profesión')
-        empresa.save()
-        return empresa
+    class Meta:
+        model = OfertaDeTrabajo
+        fields = ('cargo', 'descripcion_del_trabajo', 'carga_horaria', 'profesion')

@@ -9,7 +9,10 @@ def environment(**options):
     env = Environment(**options)
     env.globals.update({
         'static': staticfiles_storage.url,
-        'url': reverse,
+        'url': jinja_url,
         'user': AnonymousUser()
     })
     return env
+
+def jinja_url(uri, *args):
+    return reverse(uri, args=args)

@@ -84,24 +84,21 @@ def get_registro_ofertaDeTrabajo_form(request):
 def handle_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
+        form.save()
         return redirect('home')
     else:
-        form=RegistroOfertaDeTrabajo()
         return render(request, 'crear_oferta.html', {'form': form})
 
-  def user_edit(request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        if request.method == "POST":
-            form = RegistroDesocupado(request.user, instance=post)
-            if form.is_valid():
-                post = form.save(commit=False)
-                user.username = request.user
-                post.save()
-                return redirect('user_edit', pk=post.pk)
-        else:
-            form = PostForm(instance=post)
-        return render(request, 'user_edit.html', {'form': form})
-
+def user_edit(request, pk):
+    if request.user.is_desocupado():
+        form = RegistroDesocupado(request.user)
+        form.save()
+        return redirect('user_edit', pk=user.pk)
+    else:
+        request.user.is_empresa()
+        form = RegistroEmpresa(request.user)
+        form.save()
+        return  redirect('user_edit', pk=user.pk)
 
 class EliminarDesocupado(DeleteView):
     model = Desocupado

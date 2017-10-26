@@ -16,7 +16,7 @@
 
   {% endif %}
 
-  <a class="btn btn-default" href="{% url 'user_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span>Modificar informacion personal</a>
+  <a class="btn btn-default" href="{{url ('user_edit', 1 ) }}"><span class="glyphicon glyphicon-pencil"></span>Modificar informacion personal</a>
 
   <button type="button" class="btn btn-primary" data-toggle="button" href="{{url ('eliminar.desocupado')}}" aria-pressed="false" autocomplete="off" >
   Eliminar Cuenta

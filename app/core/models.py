@@ -42,7 +42,7 @@ class Desocupado(models.Model):
     def __str__(self):
         return "Desocupado: " + str(self.nombre) + " " + str(self.apellido)  + " de " + str(self.user.username)
 
-# Si se crea un usuario, se crea automáticamente un Desocupado 
+# Si se crea un usuario, se crea automáticamente un Desocupado
 @receiver(post_save, sender=User)
 def update_user_desocupado(sender, instance, created, **kwargs):
     if created:
@@ -68,12 +68,15 @@ def update_user_empresa(sender, instance, created, **kwargs):
     if created:
         Empresa.objects.create(user=instance)
     instance.empresa.save()
-        
+
 class OfertaDeTrabajo(models.Model):
     # Siempre usar guiones bajos para los nombres
-    tipo_de_trabajo =  models.CharField(max_length=200)
+    cargo = models.CharField(max_length=100)
+    descripcion_del_trabajo = models.CharField(max_length=100)
+    carga_horaria = models.CharField(max_length=15)
+    profesion = models.CharField(max_length=100)
     def __str__(self):
-        return self.tipoDeTrabajo
+        return self.cargo
 
 
 
