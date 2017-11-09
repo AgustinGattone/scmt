@@ -120,3 +120,30 @@ def handle_user_edit(request, pk):
 def user_delete(request):
     User.objects.get(id=request.user.id).delete()
     return redirect('logout')
+
+
+@login_required
+def oferta_edit(request):
+    if request.method == "GET":
+        return get_oferta_edit(request, pk)
+    elif request.method == 'POST':
+        return handle_oferta_edit(request, pk)
+
+@login_required
+def get_oferta_edit(request):
+    form = RegistroOfertaDeTrabajo()
+    return render(request, 'oferta_edit.html', {'form': form})
+
+@login_required
+def handle_oferta_edit(request):
+    form = RegistroOfertaDeTrabajo(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    else:
+        return render(request, 'oferta_edit.html', {'form': form})
+
+@login_required
+def oferta_delete(request):
+    OfertaDeTrabajo.objects.get(id=request.ofertaDeTrabajo.id).delete()
+    return redirect('home')

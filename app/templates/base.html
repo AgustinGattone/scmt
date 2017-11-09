@@ -46,7 +46,7 @@
   <nav class="navbar navbar-inverse">
   	<nav  class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{url ('login')}}">Sistema de Colocaciones</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{url ('home')}}">Sistema de Colocaciones</a>
 
           {% if user.is_authenticated() %}
               <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -58,6 +58,8 @@
                     {% if user.is_empresa() %}
       					<li class="nav-item">
                     	<a class="nav-link js-scroll-trigger" href="{{ url('registrar.ofertaDeTrabajo') }}">Crear oferta de trabajo</a>
+                    	<li class="nav-item">
+                    	<a class="nav-link js-scroll-trigger" href="{{ url('oferta_edit') }}"> Modificar ofertas de trabajo</a>
   					{% endif %}
                   
                   {% else %}
