@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^registrar/desocupado$', core_views.registro_desocupado, name='registrar.desocupado'),
     url(r'^registrar/empresa$', core_views.registro_empresa, name='registrar.empresa'),
     url(r'^registrar/ofertaDeTrabajo$', core_views.registro_ofertaDeTrabajo, name='registrar.ofertaDeTrabajo'),
-    url(r'^eliminar/desocupado$', core_views.EliminarDesocupado.as_view(), name='eliminar.desocupado'),
-    url(r'^user/(?P<pk>[0-9]+)/edit', core_views.user_edit, name='user_edit'),
+    url(r'^user/(?P<pk>[0-9]+)/edit$', core_views.user_edit, name='user_edit'),
+    url(r'^eliminar/desocupado$', core_views.user_delete, name='user_delete'),
 ]

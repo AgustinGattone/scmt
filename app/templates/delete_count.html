@@ -1,8 +1,0 @@
-{% extends 'signin.html' %}
-  {% block content %}
-   <form action="{{user.profile() }}" method="post">
-	
-   <p>Desea eliminar su cuenta"{{ user.profile() }}"?</p>
-    <input type="submit" value="Confirm" />
-    </form>
-  {% endblock %}

@@ -89,12 +89,14 @@ def handle_registro_ofertaDeTrabajo_form(request):
     else:
         return render(request, 'crear_oferta.html', {'form': form})
 
+@login_required
 def user_edit(request, pk):
     if request.method == "GET":
         return get_user_edit(request, pk)
     elif request.method == 'POST':
         return handle_user_edit(request, pk)
 
+@login_required
 def get_user_edit(request, pk):
     if request.user.is_desocupado():
         form = RegistroDesocupado(instance=request.user)
@@ -102,6 +104,7 @@ def get_user_edit(request, pk):
         form = RegistroEmpresa(instance=request.user)
     return render(request, 'user_edit.html', {'form': form})
 
+@login_required
 def handle_user_edit(request, pk):
     if request.user.is_desocupado():
         form = RegistroDesocupado(request.POST, instance=request.user)
@@ -113,6 +116,9 @@ def handle_user_edit(request, pk):
     else:
         return render(request, 'user_edit.html', {'form': form})
 
-class EliminarDesocupado(DeleteView):
-    model = Desocupado
-    success_url = reverse_lazy('user')
+@login_required
+def user_delete(request):
+    user = request.user
+    user.refresh_from_db()
+    user.delete()
+    return redirect('logout')
