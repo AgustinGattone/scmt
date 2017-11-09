@@ -18,8 +18,8 @@
 
   <a class="btn btn-default" href="{{url ('user_edit', 1 ) }}"><span class="glyphicon glyphicon-pencil"></span>Modificar informacion personal</a>
 
-  <button type="button" class="btn btn-primary" data-toggle="button" href="{{url ('user_delete') }}" aria-pressed="false" autocomplete="off" >
-  Eliminar Cuenta
-</button>
+  <a class="btn btn-primary" href="{{url ('user_delete') }}" >
+    Eliminar Cuenta
+  </a>
 
 {% endblock %}
