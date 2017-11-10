@@ -81,6 +81,7 @@ def get_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo()
     return render(request, 'crear_oferta.html', {'form': form})
 
+
 def handle_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
@@ -123,23 +124,23 @@ def user_delete(request):
 
 
 @login_required
-def oferta_edit(request):
+def oferta_edit(request, pk):
     if request.method == "GET":
         return get_oferta_edit(request, pk)
     elif request.method == 'POST':
         return handle_oferta_edit(request, pk)
 
 @login_required
-def get_oferta_edit(request):
-    form = RegistroOfertaDeTrabajo()
+def get_oferta_edit(request, pk):
+    form = RegistroOfertaDeTrabajo(instance=OfertaDeTrabajo.objects.get(pk=pk))
     return render(request, 'oferta_edit.html', {'form': form})
 
 @login_required
-def handle_oferta_edit(request):
+def handle_oferta_edit(request, pk):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
         form.save()
-        return redirect('home')
+        return redirect('home', pk=ofertaDeTrabajo.pk)
     else:
         return render(request, 'oferta_edit.html', {'form': form})
 
@@ -147,3 +148,8 @@ def handle_oferta_edit(request):
 def oferta_delete(request):
     OfertaDeTrabajo.objects.get(id=request.ofertaDeTrabajo.id).delete()
     return redirect('home')
+
+@login_required
+def listar_ofertas(request, pk):
+    ofertasvar = OfertaDeTrabajo.objects.all()
+    return render (request, 'oferta.html', {'ofertas': ofertasvar})

@@ -55,7 +55,7 @@ class RegistroEmpresa(UserCreationForm):
     def save(self):
         # Llamamos al save ya definido en el formulario, esto automaticamente
         # crea la empresa y el desocupado que actuan de perfil
-        user = (RegistroEmpresa, self).save()
+        user = super(RegistroEmpresa, self).save()
         # Ahora le digo que rellene al usuario con todos los datos que correspondan
         user.refresh_from_db()
         # Y finalmente cargamos todos los elementos de la empresa

@@ -1,3 +1,16 @@
 {% extends 'base.html' %}
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+        {% for oferta in ofertas %}
+                    <div class="container_12">
+                        <div class="block2">
+                            <div class=> {{ oferta.cargo }}</div>
+                            <p>{{ oferta.descripcion_del_trabajo }}</p>
+                            <p>{{ oferta.carga_horaria }} </p>
+                            <p>{{ oferta.profesion}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock content %}
