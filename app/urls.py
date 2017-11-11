@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^registrar/ofertaDeTrabajo$', core_views.registro_ofertaDeTrabajo, name='registrar.ofertaDeTrabajo'),
     url(r'^user/(?P<pk>[0-9]+)/edit$', core_views.user_edit, name='user_edit'),
     url(r'^eliminar/desocupado$', core_views.user_delete, name='user_delete'),
+    url(r'^oferta/$', core_views.listar_ofertas, name='oferta'),
     url(r'^oferta/(?P<pk>[0-9]+)/edit$', core_views.oferta_edit, name='oferta_edit'),
-    url(r'^oferta/(?P<pk>[0-9]+)$', core_views.listar_ofertas, name='oferta'),
+    
+    
 ]
