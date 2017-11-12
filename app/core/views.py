@@ -151,6 +151,6 @@ def handle_oferta_edit(request, pk):
 @login_required
 def oferta_delete(request):
     OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id).delete()
-    return redirect('home')
+    return redirect('listar_ofertas')
 
 

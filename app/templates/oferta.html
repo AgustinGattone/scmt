@@ -6,15 +6,14 @@
                             <div class="card border-warning mb-3" style="width: 25rem;">
                                 <div class="card-body">
                                     <h4 class="card-title"> Cargo: {{ oferta.cargo }} </h4>
-                                    <p class="card-text">Descripcion del trabajo: {{ oferta.descripcion_del_trabajo }}</p> 
-                                    <p class="card-text">Carga horaria: {{ oferta.carga_horaria }}</p>
-                                    <p class="card-text">Profesion:{{ oferta.profesion}}</p>
-                                    <div class="btn-group">
-                                    <div class="btn btn-primary" class="btn-group btn-group-sm" role="group" href="" >
-                                        <a>Modificar <span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a> Eliminar <span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                     
+                                     <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" class="card-text">Descripcion del trabajo: {{ oferta.descripcion_del_trabajo }}</li>
+                                        <li class="list-group-item" class="card-text">Carga horaria: {{ oferta.carga_horaria }}</li>
+                                        <li class="list-group-item" class="card-text">Profesion:{{ oferta.profesion}}</li>
+                                    </ul>
+                                        <a class="btn btn-primary" href=""> Modificar <span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a  class="btn btn-primary" href="{{url ('oferta_delete') }}"> Eliminar <span class="glyphicon glyphicon-trash"></span></a>
+                                
                             
                             </div>
                             </div>
