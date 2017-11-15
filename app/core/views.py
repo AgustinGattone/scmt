@@ -100,20 +100,20 @@ def user_edit(request, pk):
 @login_required
 def get_user_edit(request, pk):
     if request.user.is_desocupado():
-        form = RegistroDesocupado(instance=request.user)
+        form = RegistroDesocupado(instance= User.objects.get(id=request.user.id))
     else:
-        form = RegistroEmpresa(instance=request.user)
+        form = RegistroEmpresa(instance= User.objects.get(id=request.user.id))
     return render(request, 'user_edit.html', {'form': form})
 
 @login_required
 def handle_user_edit(request, pk):
     if request.user.is_desocupado():
-        form = RegistroDesocupado(request.POST, instance=request.user)
+        form = RegistroDesocupado(request.POST, instance= User.objects.get(id=request.user.id))
     else:
-        form = RegistroEmpresa(request.POST, instance=request.user)
+        form = RegistroEmpresa(request.POST, instance= User.objects.get(id=request.user.id))
     if form.is_valid():
         form.save()
-        return redirect('user_edit', pk=user.pk)
+        return redirect('home', pk=User.pk)
     else:
         return render(request, 'user_edit.html', {'form': form})
 
@@ -136,12 +136,12 @@ def oferta_edit(request, pk):
 
 @login_required
 def get_oferta_edit(request, pk):
-    form = RegistroOfertaDeTrabajo(instance=OfertaDeTrabajo.objects.get(pk=OfertaDeTrabajo.pk))
+    form = RegistroOfertaDeTrabajo(instance=OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id))
     return render(request, 'oferta_edit.html', {'form': form})
 
 @login_required
 def handle_oferta_edit(request, pk):
-    form = RegistroOfertaDeTrabajo(request.POST)
+    form = RegistroOfertaDeTrabajo(request.POST, instance=OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id))
     if form.is_valid():
         form.save()
         return redirect('home', pk=OfertaDeTrabajo.pk)
@@ -151,6 +151,6 @@ def handle_oferta_edit(request, pk):
 @login_required
 def oferta_delete(request):
     OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id).delete()
-    return redirect('listar_ofertas')
+    return redirect('home')
 
 

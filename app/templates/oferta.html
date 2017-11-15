@@ -11,7 +11,8 @@
                                         <li class="list-group-item" class="card-text">Carga horaria: {{ oferta.carga_horaria }}</li>
                                         <li class="list-group-item" class="card-text">Profesion:{{ oferta.profesion}}</li>
                                     </ul>
-                                        <a class="btn btn-primary" href=""> Modificar <span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="btn btn-primary" href="{{url ('oferta_edit' 1 ) }}"> Modificar <span class="glyphicon glyphicon-pencil"></span></a>
+
                                         <a  class="btn btn-primary" href="{{url ('oferta_delete') }}"> Eliminar <span class="glyphicon glyphicon-trash"></span></a>
                                 
                             

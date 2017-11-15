@@ -73,3 +73,6 @@ class RegistroOfertaDeTrabajo(forms.ModelForm):
     class Meta:
         model = OfertaDeTrabajo
         fields = ('cargo', 'descripcion_del_trabajo', 'carga_horaria', 'profesion')
+
+
+
