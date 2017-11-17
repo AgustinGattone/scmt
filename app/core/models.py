@@ -36,7 +36,7 @@ class Desocupado(models.Model):
     formacion = models.TextField(null=True)
     habilidades = models.TextField(null=True)
     trabajo_realizable = models.CharField(max_length=50, null=True)
-    dni = models.CharField(max_length=10, null=True)
+    dni = models.CharField(max_length=10, null=False)
 
     # Como se representa como texto, o sea, como se ve en el admin
     def __str__(self):

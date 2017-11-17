@@ -9,11 +9,18 @@ from django.urls import reverse_lazy
 from app.core.forms import RegistroDesocupado, RegistroEmpresa, RegistroOfertaDeTrabajo
 from app.core.models import *
 
-@login_required
-def home(request):
+def get_current_user(request):
     user = request.user
     user.refresh_from_db()
-    return render(request, 'home.html', {'user': user})
+    return user
+
+def do_render(request, url, dic = {}):
+    dic['user'] = get_current_user(request)
+    return render(request, url, dic)
+
+@login_required
+def home(request):
+    return do_render(request, 'home.html')
 
 def registro_desocupado(request):
     # Cuando algo llega a esta vista (llamada desde una URL) puede venir por dos
@@ -71,24 +78,26 @@ def handle_registro_empresa_form(request):
     else:
         return render(request, 'signup.html', {'form': form})
 
+@login_required
 def registro_ofertaDeTrabajo(request):
     if request.method == "GET":
         return get_registro_ofertaDeTrabajo_form(request)
     elif request.method == 'POST':
         return handle_registro_ofertaDeTrabajo_form(request)
 
+@login_required
 def get_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo()
-    return render(request, 'crear_oferta.html', {'form': form})
+    return do_render(request, 'crear_oferta.html', {'form': form})
 
-
+@login_required
 def handle_registro_ofertaDeTrabajo_form(request):
     form = RegistroOfertaDeTrabajo(request.POST)
     if form.is_valid():
         form.save()
         return redirect('home')
     else:
-        return render(request, 'crear_oferta.html', {'form': form})
+        return do_render(request, 'crear_oferta.html', {'form': form})
 
 @login_required
 def user_edit(request, pk):
@@ -99,23 +108,17 @@ def user_edit(request, pk):
 
 @login_required
 def get_user_edit(request, pk):
-    if request.user.is_desocupado():
-        form = RegistroDesocupado(instance= User.objects.get(id=request.user.id))
-    else:
-        form = RegistroEmpresa(instance= User.objects.get(id=request.user.id))
-    return render(request, 'user_edit.html', {'form': form})
+    form = RegistroDesocupado(instance=User.objects.get(id=request.user.pk))
+    return do_render(request, 'user_edit.html', {'form': form, 'user': get_current_user(request)})
 
 @login_required
 def handle_user_edit(request, pk):
-    if request.user.is_desocupado():
-        form = RegistroDesocupado(request.POST, instance= User.objects.get(id=request.user.id))
-    else:
-        form = RegistroEmpresa(request.POST, instance= User.objects.get(id=request.user.id))
+    form = RegistroDesocupado(request.POST, instance=User.objects.get(id=request.user.pk))
     if form.is_valid():
         form.save()
-        return redirect('home', pk=User.pk)
+        return redirect('home')
     else:
-        return render(request, 'user_edit.html', {'form': form})
+        return do_render(request, 'user_edit.html', {'form': form, 'user': get_current_user(request)})
 
 @login_required
 def user_delete(request):
@@ -125,7 +128,7 @@ def user_delete(request):
 @login_required
 def listar_ofertas(request):
     ofertasvar = OfertaDeTrabajo.objects.all()
-    return render (request, 'oferta.html', {'ofertas': ofertasvar})
+    return do_render(request, 'oferta.html', {'ofertas': ofertasvar})
 
 @login_required
 def oferta_edit(request, pk):
@@ -136,21 +139,19 @@ def oferta_edit(request, pk):
 
 @login_required
 def get_oferta_edit(request, pk):
-    form = RegistroOfertaDeTrabajo(instance=OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id))
-    return render(request, 'oferta_edit.html', {'form': form})
+    form = RegistroOfertaDeTrabajo(instance=OfertaDeTrabajo.objects.get(id=pk))
+    return do_render(request, 'oferta_edit.html', {'form': form, 'user': get_current_user(request)})
 
 @login_required
 def handle_oferta_edit(request, pk):
-    form = RegistroOfertaDeTrabajo(request.POST, instance=OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id))
+    form = RegistroOfertaDeTrabajo(request.POST, instance=OfertaDeTrabajo.objects.get(id=pk))
     if form.is_valid():
         form.save()
-        return redirect('home', pk=OfertaDeTrabajo.pk)
+        return redirect('oferta')
     else:
-        return render(request, 'oferta_edit.html', {'form': form})
+        return do_render(request, 'oferta_edit.html', {'form': form, 'user': get_current_user(request)})
 
 @login_required
-def oferta_delete(request):
-    OfertaDeTrabajo.objects.get(id=OfertaDeTrabajo.id).delete()
+def oferta_delete(request, pk):
+    OfertaDeTrabajo.objects.get(id=pk).delete()
     return redirect('home')
-
-

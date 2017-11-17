@@ -11,13 +11,15 @@ class RegistroDesocupado(UserCreationForm):
     formacion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
     habilidades = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
     trabajo_realizable = forms.CharField(max_length=500, required=False)
-    localidad = forms.CharField(max_length=500, required=False)
+    localidad = forms.CharField(max_length=500, required=True)
 
     class Meta:
         model = User
         # Le pega a user, porq queremos que guarde el usuario,
         # la creación del perfil la manejamos en el metodo de más abajo
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
+
 
     def save(self):
         # Llamamos al save ya definido en el formulario, esto automaticamente
@@ -52,6 +54,8 @@ class RegistroEmpresa(UserCreationForm):
         # la creación del perfil la manejamos en el metodo de más abajo
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
+
+
     def save(self):
         # Llamamos al save ya definido en el formulario, esto automaticamente
         # crea la empresa y el desocupado que actuan de perfil
@@ -73,6 +77,3 @@ class RegistroOfertaDeTrabajo(forms.ModelForm):
     class Meta:
         model = OfertaDeTrabajo
         fields = ('cargo', 'descripcion_del_trabajo', 'carga_horaria', 'profesion')
-
-
-
